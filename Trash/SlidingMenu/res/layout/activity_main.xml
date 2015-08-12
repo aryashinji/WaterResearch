@@ -11,14 +11,31 @@
         android:layout_height="match_parent" />
 
     <!-- Listview to display slider menu -->
-    <ListView
-        android:id="@+id/list_slidermenu"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@color/list_divider"
-        android:dividerHeight="1dp"        
-        android:listSelector="@drawable/list_selector"
-        android:background="@color/list_background"/>
+        android:id="@+id/list_slidermenu"
+		android:layout_gravity="start"
+		>
+		<ListView
+		    android:layout_width="240dp"
+		    android:layout_height="50dp"
+		    android:background="#123456"
+		    android:text="Menu" 
+		    />
+		<GridView 
+		    android:layout_width="240dp"
+		    android:layout_height="5dp"
+		    android:background="#fff"/>
+	    <ListView
+	        android:id="@+id/data_list"
+	        android:layout_width="240dp"
+	        android:layout_height="match_parent"
+	        android:choiceMode="singleChoice"
+	        android:divider="@color/list_divider"
+	        android:dividerHeight="1dp"        
+	        android:listSelector="@drawable/list_selector"
+	        android:background="@color/list_background"/>
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>
