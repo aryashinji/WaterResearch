@@ -1,0 +1,43 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Framelayout to display Fragments -->
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!-- Listview to display slider menu -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:id="@+id/list_slidermenu"
+        android:layout_gravity="start">
+		<Button
+            android:id="@+id/add_location"
+		    android:layout_width="240dp"
+		    android:layout_height="50dp"
+		    android:background="@color/blue"
+		    android:text="@string/add_location"
+            android:gravity="center"
+            android:textSize="25sp"
+		    />
+		<GridView
+		    android:layout_width="240dp"
+		    android:layout_height="5dp"
+		    android:background="@color/black"/>
+
+        <ListView
+	        android:id="@+id/data_list"
+	        android:layout_width="240dp"
+	        android:layout_height="match_parent"
+	        android:choiceMode="singleChoice"
+	        android:divider="@color/list_divider"
+	        android:dividerHeight="1dp"
+	        android:listSelector="@drawable/list_selector"
+	        android:background="@color/list_background"/>
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout><!-- From: file:/C:/Users/Arya/AndroidstudioProjects/SlidingMenu1/app/src/main/res/layout/activity_main.xml -->

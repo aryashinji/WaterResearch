@@ -1,0 +1,2 @@
+C:\Users\Arya\AndroidstudioProjects\SlidingMenu1\app\build\intermediates\classes\debug
+C:\Users\Arya\AndroidstudioProjects\SlidingMenu1\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-68abcfe054351fb319fb53b7228236eb6e2fc021.jar

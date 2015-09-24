@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Groundwater Quality Monitoring</string>
+    <string name="action_settings">Seting</string>
+    <string name="menu">Menu</string>
+    <string name="DHL">uS/cm</string>
+    <string name="TDS">mg/l</string>
+    <string name="nama_lokasi">Alamat Lokasi</string>
+    <string name="nama_kota">Kota / Kabupaten</string>
+    <string name="hasil_analisis">Hasil Analisis</string>
+    <string name="bau">Bau</string>
+    <string name="warna">Warna</string>
+    <string name="rasa">Rasa</string>
+    <string name="dhl">DHL</string>
+    <string name="ph">pH</string>
+    <string name="tds">TDS</string>
+    <string name="fe">Fe</string>
+    <string name="no2">NO2</string>
+    <string name="f">F</string>
+    <string name="memenuhi">Lulus Uji</string>
+    <string name="tidak_memenuhi">Gagal Uji</string>
+    <string name="aman">Aman</string>
+    <string name="rawan">Rawan</string>
+    <string name="kritis">Kritis</string>
+    <string name="rusak">Rusak</string>
+    <string name="close">Close</string>
+    <string name="find">Find</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="analisa">Analisa</string>
+    <string name="add_location">Tambah Lokasi</string>
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Groundwater Quality Monitoring</item>
+        <item >Jalan Keputih</item>
+        <item >Jembatan Merr</item>
+        <item >Jalan Pattimura</item>
+        <item >Jl. Kedung Tarukanbaru II no.23</item>
+        <item >Danau depan Statistika-ITS</item>
+        <item >Lenmarc Mall</item>
+        <item >Pantai Kenjeran</item>
+        <item >Pantai Kuta</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@color/rusak</item>
+        <item>@color/rawan</item>
+        <item>@color/aman</item>
+        <item>@color/aman</item>
+        <item>@color/rusak</item>
+        <item>@color/kritis</item>
+        <item>@color/kritis</item>
+        <item>@color/rawan</item>
+    </array>
+
+    <string-array name="baulist">
+        <item></item>
+        <item>Berbau</item>
+        <item>Tidak Berbau</item>
+    </string-array>
+    <string-array name="warnalist">
+        <item></item>
+        <item>Berwarna</item>
+        <item>Tidak Berwarna</item>
+    </string-array>
+    <string-array name="rasalist">
+        <item></item>
+        <item>Berasa</item>
+        <item>Tidak Berasa</item>
+    </string-array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
+</resources>

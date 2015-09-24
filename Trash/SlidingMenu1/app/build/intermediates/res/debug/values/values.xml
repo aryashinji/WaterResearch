@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Users/Arya/AndroidstudioProjects/SlidingMenu1/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string-array name="baulist">
+        <item/>
+        <item>Stinky</item>
+        <item>Not Stinky</item>
+    </string-array>
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@color/rusak</item>
+        <item>@color/rawan</item>
+        <item>@color/aman</item>
+        <item>@color/aman</item>
+        <item>@color/rusak</item>
+        <item>@color/kritis</item>
+        <item>@color/kritis</item>
+        <item>@color/rawan</item>
+    </array>
+    <string-array name="nav_drawer_items">
+        <item>Groundwater Quality Monitoring</item>
+        <item>Jalan Keputih</item>
+        <item>Jembatan Merr</item>
+        <item>Jalan Pattimura</item>
+        <item>Jl. Kedung Tarukanbaru II no.23</item>
+        <item>Danau depan Statistika-ITS</item>
+        <item>Lenmarc Mall</item>
+        <item>Pantai Kenjeran</item>
+        <item>Pantai Kuta</item>
+    </string-array>
+    <string-array name="rasalist">
+        <item/>
+        <item>Tasty</item>
+        <item>Not Tasty</item>
+    </string-array>
+    <string-array name="warnalist">
+        <item/>
+        <item>Colored</item>
+        <item>Not Colored</item>
+    </string-array>
+    <!-- From: file:/C:/Users/Arya/AndroidstudioProjects/SlidingMenu1/app/src/main/res/values/color.xml -->
+    <eat-comment/>
+    <color name="aman">#0f0</color>
+    <color name="black">#000000</color>
+    <color name="blue">#0000ff</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="failed">#f0f</color>
+    <color name="green">#00ff00</color>
+    <color name="kritis">#ff7e00</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="list_item_title">#fff</color>
+    <color name="pass">#00f</color>
+    <color name="rawan">#ffff00</color>
+    <color name="red">#ff0000</color>
+    <color name="rusak">#f00</color>
+    <color name="white">#ffffff</color>
+    <!-- From: file:/C:/Users/Arya/AndroidstudioProjects/SlidingMenu1/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/C:/Users/Arya/AndroidstudioProjects/SlidingMenu1/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="DHL">uS/cm</string>
+    <string name="TDS">mg/l</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_location">Add Location</string>
+    <string name="aman">Safe</string>
+    <string name="analisa">Analyze</string>
+    <string name="app_name">Groundwater Quality Monitoring</string>
+    <string name="bau">Scent</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="dhl">DHL</string>
+    <string name="f">F</string>
+    <string name="fe">Fe</string>
+    <string name="find">Find</string>
+    <string name="hasil_analisis">Analyze Result</string>
+    <string name="kritis">Crictical</string>
+    <string name="memenuhi">Pass the test</string>
+    <string name="menu">Menu</string>
+    <string name="nama_kota">City</string>
+    <string name="nama_lokasi">Location Address</string>
+    <string name="no2">NO2</string>
+    <string name="ph">pH</string>
+    <string name="rasa">Taste</string>
+    <string name="rawan">Troubled</string>
+    <string name="rusak">Damaged</string>
+    <string name="save">Save</string>
+    <string name="tds">TDS</string>
+    <string name="tidak_memenuhi">Failed the test</string>
+    <string name="warna">Color</string>
+    <!-- From: file:/C:/Users/Arya/AndroidstudioProjects/SlidingMenu1/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>
