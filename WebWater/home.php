@@ -56,40 +56,28 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top col-lg-2" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <div class="navbar-header" style="padding: 0 15px 0 15px">
+                <button type="button" class="navbar-toggle" style="float:left" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+                <ul class="nav navbar-right top-nav" style="float: right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                <!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
             <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <!--li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li-->
-                        <li class="divider"></li>
-                        <li>
-                            <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-							<!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
-                        </li>
-                    </ul>
-                </li>
-            </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
@@ -112,65 +100,31 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                     <li>
                         <a href="kelasacuan.php"><i class="fa fa-fw fa-desktop"></i> Kelas Acuan</a>
                     </li>
-                    <!--li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-                    </li-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="padding:0">
 
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding:0">
 
                 <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
+                    <div class="col-lg-8">
+                        <h1 class="page">
                             Peta Lokasi Sumur Air Minum
                         </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Lokasi</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-edit"></i> Lokasi
-                            </li>
-                        </ol>
                     </div>
                 </div>
-				
-				
-				
-				
                 <!-- /.row -->
 				
-                <div class="row">
-                    <div class="col-lg-16">
-
+                <div class="row" >
+                    <div class="col-lg-12" style="margin:0">
                         <head>
 						   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-
 						   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-
-						   
 						   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
 						   <script type="text/javascript">
 						   //<![CDATA[
 						   var customIcons = {
@@ -248,7 +202,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 						 </script>
 						 </head>
 						 <body onload="load()">
-						   <center><div align="center" id="map" style="width: 800px;  height: 400px"></div></center>
+						   <center><div align="center" id="map" style="width: 100%;  height: 100%"></div></center>
 						 </body>
 						
                     </div>
