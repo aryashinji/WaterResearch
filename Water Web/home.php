@@ -71,8 +71,8 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 					<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
                             <li>
                                 <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                                 <!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->

@@ -66,25 +66,21 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="home.php">Water Quality Monitoring</a>
-                <ul class="nav navbar-top-links navbar-right" style="float:right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                                <!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
-                            </li>
-                        </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
             </div>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu"> 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                <!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
                     <li>
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
