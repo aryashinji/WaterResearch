@@ -29,7 +29,7 @@ if(isset($_POST['id'])  ){
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin.css" rel="stylesheet">
+    <link href="css/sb-Admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -59,50 +59,42 @@ if(isset($_POST['id'])  ){
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                
+                <a class="navbar-brand" href="home.php">Water Quality Monitoring</a>
+                <ul class="nav navbar-top-links navbar-right" style="float:right">
+                <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo @$_SESSION["user"]; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <!--li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li-->
-                        <li class="divider"></li>
-                        <li>
-                            <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-							<!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
-                        </li>
-                    </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                <!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
+                            </li>
+                        </ul>
+                    <!-- /.dropdown-user -->
                 </li>
+                <!-- /.dropdown -->
             </ul>
+            </div>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-					
-                    <li>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu"> 
+                    <li >
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
-					<?php if($_SESSION["access"]=="Admin"){ ?><li>
+                    <li>
+                        <?php if($_SESSION["access"]=="Admin"){ ?><li>
                         <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
                     </li> <?php } ?>
+                    </li>
                     <li   class="active">
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>
                     </li>
@@ -115,46 +107,22 @@ if(isset($_POST['id'])  ){
                     <li>
                         <a href="kelasacuan.php"><i class="fa fa-fw fa-desktop"></i> Kelas Acuan</a>
                     </li>
-                    <!--li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-                    </li-->
                 </ul>
             </div>
+        </div>
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="padding:0">
 
             <div class="container-fluid">
 
                 <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
+                    <div class="col-lg-12" >
+                        <h1 class="page-header" style="margin:0; padding:0">
                             Delete Lokasi
                         </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Lokasi</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-edit"></i> Edit Lokasi
-                            </li>
-                        </ol>
                     </div>
                 </div>
 				
@@ -231,6 +199,12 @@ if(isset($_POST['id'])  ){
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/sb-admin-2.js"></script>
 
 </body>
 

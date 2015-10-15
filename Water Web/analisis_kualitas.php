@@ -19,7 +19,7 @@ require'qs_connection.php';
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin.css" rel="stylesheet">
+    <link href="css/sb-Admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -48,44 +48,34 @@ require'qs_connection.php';
 
     <div id="wrapper">
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                
+                <a class="navbar-brand" href="home.php">Water Quality Monitoring</a>
+                <ul class="nav navbar-top-links navbar-right" style="float:right">
+                <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo @$_SESSION["user"]; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <!--li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li-->
-                        <li class="divider"></li>
-                        <li>
-                            <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-							<!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
-                        </li>
-                    </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                <!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
+                            </li>
+                        </ul>
+                    <!-- /.dropdown-user -->
                 </li>
+                <!-- /.dropdown -->
             </ul>
+            </div>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-           <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-					
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu"> 
                     <li>
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
@@ -104,45 +94,19 @@ require'qs_connection.php';
                     <li>
                         <a href="kelasacuan.php"><i class="fa fa-fw fa-desktop"></i> Kelas Acuan</a>
                     </li>
-                    <!--li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-                    </li-->
                 </ul>
             </div>
+        </div>
             <!-- /.navbar-collapse -->
         </nav>
-        <div id="page-wrapper">
-
+        <div id="page-wrapper" style="padding:0">
             <div class="container-fluid">
-
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">
+                        <h1 class="page-header" style="margin:0; padding:0">
                             Analisis Kualitas
                         </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="#">Administrator Menu</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-table"></i> Analisis Kualitas
-                            </li>
-                        </ol>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -170,11 +134,11 @@ require'qs_connection.php';
 				
                 <div class="row">
 					
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" style="margin:0; padding:0">
                         <center><h2>List analisis</h2>
 						<!--center><a href="addnews.php" class="btn btn-primary" role="button">ADD NEWS</a><br><br-->
+                        <center><a href="addanalisis.php" class="btn btn-primary" role="button">ADD ANALISIS BARU</a><br><br>
                         <div class="table-responsive">
-						<center><a href="addanalisis.php" class="btn btn-primary" role="button">ADD ANALISIS BARU</a><br><br>
                            
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -234,50 +198,6 @@ require'qs_connection.php';
 									  
 									?>
 								</tbody>
-                                <!--tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody-->
                             </table>
                         </div>
                 </div>
@@ -300,6 +220,12 @@ require'qs_connection.php';
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/sb-admin-2.js"></script>
 
 </body>
 

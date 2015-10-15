@@ -53,68 +53,52 @@ if (isset($berhasil)) echo "<script type='text/javascript'>alert('Register Succe
 ?>
 <!DOCTYPE html>
 <html >
-  <head>
-    <meta charset="UTF-8">
-    <title>Water Quality Monitoring</title>
-    
-    
-    <link rel="stylesheet" href="css/reset.css">
-
-    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
-<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
-        <link rel="stylesheet" href="css/style.css">
-
-    
-    
-    
-  </head>
-
-  <body>
-
-    
-<!-- Form Mixin-->
-<!-- Pen Title-->
-<div class="pen-title">
-  <h1>Hello !!</h1><span>Selamat datang di Water Quality Monitoring</span>
-</div>
-<!-- Form Module-->
-<div class="module form-module">
-  <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-    <div class="tooltip">Register</div>
-  </div>
-  <div class="form">
-    <h2>Login to your account</h2>
-    <form action="index.php" method="post">
-      <input type="text" placeholder="Username" name="username"/>
-      <input type="password" placeholder="Password" name="password"/>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  <div class="form">
-    <h2>Create an account</h2>
-    <form action="index.php" method="post" >
-      <input type="text" placeholder="Username" name="usernamebaru"/>
-      <input type="password" placeholder="Password" name="passwordbaru"/>
-	  <input type="email" placeholder="Email" name="emailbaru"/>
-	  <label><center>Status</label><br>
-                <select name="statusbaru" >
-					<option value ="Admin" >Admin<br>
-					<option value ="User"  >User<br>
+	<head>
+		<meta charset="UTF-8">
+		<title>Water Quality Monitoring</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+		<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+  	<body>
+		<!-- Form Mixin-->
+		<!-- Pen Title-->
+		<div class="pen-title">
+		  	<h1>Hello !!</h1><span>Selamat datang di Water Quality Monitoring</span>
+		</div>
+		<!-- Form Module-->
+		<div class="module form-module">
+			<div class="toggle"><i class="fa fa-times fa-pencil"></i>
+				<div class="tooltip">Register</div>
+			</div>
+			<div class="form">
+				<h2>Login to your account</h2>
+				<form action="index.php" method="post">
+					<input type="text" placeholder="Username" name="username"/>
+					<input type="password" placeholder="Password" name="password"/>
+				<button type="submit">Login</button>
+				</form>
+			</div>
+			<div class="form">
+			<h2>Create an account</h2>
+			<form action="index.php" method="post" >
+				<input type="text" placeholder="Username" name="usernamebaru"/>
+				<input type="password" placeholder="Password" name="passwordbaru"/>
+				<input type="email" placeholder="Email" name="emailbaru"/>
+				<label><center>Status</label><br>
+				<select name="statusbaru" >
+				<option value ="Admin" >Admin<br>
+				<option value ="User"  >User<br>
 				</select><br><br>
-      <!--input type="status" placeholder="Status"/-->
-      <button type="submit">Register</button>
-    </form>
-  </div>
-  <!--div class="cta"><a href="http://andytran.me">Forgot your password?</a></div-->
-</div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='js/da0415260bc83974687e3f9ae.js'></script>
-
-        <script src="js/index.js"></script>
-
-    
-    
-    
+				<!--input type="status" placeholder="Status"/-->
+				<button type="submit">Register</button>
+			</form>
+			</div>
+		<!--div class="cta"><a href="http://andytran.me">Forgot your password?</a></div-->
+		</div>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src='js/da0415260bc83974687e3f9ae.js'></script>
+    <script src="js/index.js"></script>	    
   </body>
 </html>
