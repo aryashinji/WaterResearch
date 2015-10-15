@@ -1,0 +1,89 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/backgroud"
+    android:gravity="center">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Menghitung Luas Persegi Panjang"
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="20dip"
+            android:text=""/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="40dip"
+            android:paddingRight="40dip">
+            <EditText
+                android:id="@+id/textPanjang"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="masukan panjang"/>
+            <EditText
+                android:id="@+id/textLebar"
+                android:layout_width="fill_parent"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:hint="masukan lebar"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:text=""/>
+            <TextView
+                android:id="@+id/luas"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="Luas : "/>
+            <EditText
+                android:id="@+id/textLuas"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="--hasilnya--"/>
+            <TextView
+                android:id="@+id/keliling"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="Keliling : "/>
+            <EditText
+                android:id="@+id/textKeliling"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="--hasilnya--"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <Button
+                android:id="@+id/btnLuas"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:text="Hitung Luas"/>
+            <Button
+                android:id="@+id/btnKeliling"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:text="Hitung Keliling"/>
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:text="Bersihkan"/>
+        </LinearLayout>
+    </TableLayout>
+</ScrollView>
