@@ -127,13 +127,8 @@ if(isset($_POST['alamat'])  ){
                     </div>
                 </div>
                 <!-- /.row -->
-				<?php
-				
-				
-				?>
                 <div class="row">
                     <div class="col-lg-12">
-
                         <form action="addLokasi.php" method="post">
 							<div class="form-group">
                                 <label>Nama</label>
@@ -143,22 +138,25 @@ if(isset($_POST['alamat'])  ){
                                 <label>Alamat</label>
                                 <input placeholder="Alamat Lokasi" class="form-control" name="alamat">
                             </div>
-							
-							<div class="form-group">
-                                <label>Latitude</label>
-                                <input placeholder="Latitude" class="form-control" name="latitude">
+                            <label>Latitude & Longitude</label>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" onclick="clear()" checked> Manual
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2" onclick="getLocation()"> Automatically
+                                </label>
                             </div>
 							<div class="form-group">
-                                <label>Longitude</label>
-                                <input placeholder="Longitude" class="form-control" name="longitude">
+                                <input placeholder="Latitude" id="lat" class="form-control" name="latitude">
+                            </div>
+							<div class="form-group">
+                                <input placeholder="Longitude" id="long" class="form-control" name="longitude">
                             </div>
                             
-							 
                             <button type="submit" class="btn btn-default">Submit</button>
                             <a href="Lokasi.php" class="btn btn-primary" role="button">Back</a><br><br>
-
                         </form>
-						
                     </div>
                     
 						
@@ -175,7 +173,27 @@ if(isset($_POST['alamat'])  ){
 
     </div>
     <!-- /#wrapper -->
+    <script>
+        var la = document.getElementById("lat");
+        var lo = document.getElementById("long");
 
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+        }
+
+        function showPosition(position) {
+            la.value = position.coords.latitude;
+            lo.value = position.coords.longitude;
+        }
+
+        function clear() {
+            la.value = input.clear;
+            lo.value = input.clear;
+        }
+
+    </script>
         <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

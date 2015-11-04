@@ -70,7 +70,19 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-					<li class="dropdown">
+                    <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" id="search-box" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <div id="suggesstion-box"></div>
+                            <!-- /input-group -->
+                        </li>
+                    <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -218,6 +230,30 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#search-box").keyup(function(){
+          $.ajax({
+          type: "POST",
+          url: "readCountry.php",
+          data:'keyword='+$(this).val(),
+          beforeSend: function(){
+            $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+          },
+          success: function(data){
+            $("#suggesstion-box").show();
+            $("#suggesstion-box").html(data);
+            $("#search-box").css("background","#FFF");
+          }
+          });
+        });
+      });
+
+      function selectCountry(val) {
+      $("#search-box").val(val);
+      $("#suggesstion-box").hide();
+      }
+    </script>
 </body>
 
 </html>
