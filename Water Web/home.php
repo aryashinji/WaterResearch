@@ -15,7 +15,86 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 <!DOCTYPE html>
 <html lang="en">
 
-<head>    <meta charset="utf-8">    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <meta name="viewport" content="width=device-width, initial-scale=1">    <meta name="description" content="">    <meta name="author" content="">    <title>Water Quality Monitoring</title>    <!-- Bootstrap Core CSS -->    <link href="css/bootstrap.min.css" rel="stylesheet">    <!-- Custom CSS -->    <link href="css/sb-admin-2.css" rel="stylesheet">    <!-- Morris Charts CSS -->    <link href="css/plugins/morris.css" rel="stylesheet">    <!-- Custom Fonts -->    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->    <!--[if lt IE 9]>        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    <![endif]--></head>
+<head>    
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+  <meta name="viewport" content="width=device-width, initial-scale=1">    
+  <meta name="description" content="">    
+  <meta name="author" content="">    
+  <title>Water Quality Monitoring</title>    
+  <!-- Bootstrap Core CSS -->    
+  <link href="css/bootstrap.min.css" rel="stylesheet">    
+  <!-- Custom CSS -->    
+  <link href="css/sb-admin-2.css" rel="stylesheet">    
+  <!-- Morris Charts CSS -->    
+  <link href="css/plugins/morris.css" rel="stylesheet">    
+  <!-- Custom Fonts -->    
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">    
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->    
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->    
+  <!--[if lt IE 9]>        
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>        
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    
+  <![endif]-->
+  <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      } 
+
+    </style>
+    <style>
+      #target {
+        width: 345px;
+      }
+    </style>
+</head>
 
 <body>
 
@@ -37,18 +116,6 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                      <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" id="search-box" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <div id="suggesstion-box"></div>
-                            <!-- /input-group -->
-                        </li>
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
                     <ul class="nav nav-second-level">
@@ -171,7 +238,80 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                          </script>
                          </head>
                          <body onload="load()">
-                           <center><div align="center" id="map" style="width: 100%;  height: 90%"></div></center>
+                            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                            <div  id="map" style="width: 100%;  height: 90%"></div>
+                            <script>
+                              // This example adds a search box to a map, using the Google Place Autocomplete
+                              // feature. People can enter geographical searches. The search box will return a
+                              // pick list containing a mix of places and predicted search terms.
+
+                              function initAutocomplete() {
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                  center: {lat: -33.8688, lng: 151.2195},
+                                  zoom: 13,
+                                  mapTypeId: google.maps.MapTypeId.ROADMAP
+                                });
+
+                                // Create the search box and link it to the UI element.
+                                var input = document.getElementById('pac-input');
+                                var searchBox = new google.maps.places.SearchBox(input);
+                                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                                // Bias the SearchBox results towards current map's viewport.
+                                map.addListener('bounds_changed', function() {
+                                  searchBox.setBounds(map.getBounds());
+                                });
+
+                                var markers = [];
+                                // [START region_getplaces]
+                                // Listen for the event fired when the user selects a prediction and retrieve
+                                // more details for that place.
+                                searchBox.addListener('places_changed', function() {
+                                  var places = searchBox.getPlaces();
+
+                                  if (places.length == 0) {
+                                    return;
+                                  }
+
+                                  // Clear out the old markers.
+                                  markers.forEach(function(marker) {
+                                    marker.setMap(null);
+                                  });
+                                  markers = [];
+
+                                  // For each place, get the icon, name and location.
+                                  var bounds = new google.maps.LatLngBounds();
+                                  places.forEach(function(place) {
+                                    var icon = {
+                                      url: place.icon,
+                                      size: new google.maps.Size(71, 71),
+                                      origin: new google.maps.Point(0, 0),
+                                      anchor: new google.maps.Point(17, 34),
+                                      scaledSize: new google.maps.Size(25, 25)
+                                    };
+
+                                    // Create a marker for each place.
+                                    markers.push(new google.maps.Marker({
+                                      map: map,
+                                      icon: icon,
+                                      title: place.name,
+                                      position: place.geometry.location
+                                    }));
+
+                                    if (place.geometry.viewport) {
+                                      // Only geocodes have viewport.
+                                      bounds.union(place.geometry.viewport);
+                                    } else {
+                                      bounds.extend(place.geometry.location);
+                                    }
+                                  });
+                                  map.fitBounds(bounds);
+                                });
+                                // [END region_getplaces]
+                              }
+
+
+                            </script>
                          </body>
                     </div>
                 </div>
@@ -186,7 +326,6 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 
     </div>
     <!-- /#wrapper -->
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -198,30 +337,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
-    <script>
-      $(document).ready(function(){
-        $("#search-box").keyup(function(){
-          $.ajax({
-          type: "POST",
-          url: "readCountry.php",
-          data:'keyword='+$(this).val(),
-          beforeSend: function(){
-            $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
-          },
-          success: function(data){
-            $("#suggesstion-box").show();
-            $("#suggesstion-box").html(data);
-            $("#search-box").css("background","#FFF");
-          }
-          });
-        });
-      });
-
-      function selectCountry(val) {
-      $("#search-box").val(val);
-      $("#suggesstion-box").hide();
-      }
-    </script>
+    
 </body>
 
 </html>
