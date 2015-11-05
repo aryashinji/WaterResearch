@@ -1,6 +1,6 @@
 <?php
 require'qs_connection.php';
-
+if ($_SESSION['user']=="" && $_SESSION['access']=="")header('Location: index.php');
 if(isset($_POST['alamat'])  ){
 	// run information through authenticator
 	$alamat=$_POST["alamat"];$latitude=$_POST["latitude"];$longitude=$_POST["longitude"];$nama=$_POST["nama"];
@@ -48,15 +48,7 @@ if(isset($_POST['alamat'])  ){
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
 	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
 </head>
 
 <body>
@@ -93,7 +85,7 @@ if(isset($_POST['alamat'])  ){
                     </li>
                     <li>
                         <?php if($_SESSION["access"]=="Admin"){ ?><li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li> <?php } ?>
                     </li>
                     <li   class="active">
@@ -141,7 +133,7 @@ if(isset($_POST['alamat'])  ){
                             <label>Latitude & Longitude</label>
                             <div class="form-group">
                                 <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" onclick="clear()" checked> Manual
+                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" onclick="hapus()" checked> Manual
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2" onclick="getLocation()"> Automatically
@@ -155,7 +147,7 @@ if(isset($_POST['alamat'])  ){
                             </div>
                             
                             <button type="submit" class="btn btn-default">Submit</button>
-                            <a href="Lokasi.php" class="btn btn-primary" role="button">Back</a><br><br>
+                            <a href="lokasi.php" class="btn btn-primary" role="button">Back</a><br><br>
                         </form>
                     </div>
                     
@@ -188,9 +180,10 @@ if(isset($_POST['alamat'])  ){
             lo.value = position.coords.longitude;
         }
 
-        function clear() {
-            la.value = input.clear;
-            lo.value = input.clear;
+        function hapus() {
+	
+            la.value = "";
+            lo.value = "";
         }
 
     </script>

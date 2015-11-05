@@ -25,13 +25,16 @@ if ($conn->connect_error) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Water Quality Monitoring</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -170,7 +173,7 @@ if ($conn->connect_error) {
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
 					<li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li>
                     <li>
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>

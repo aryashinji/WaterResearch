@@ -1,5 +1,5 @@
 <?php require ('qs_connection.php'); 
-$idr=$_GET["id"];
+//$idr=$_GET["id"];
 if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitude']) ){
 	// run information through authenticator
 	$query="UPDATE Permenkes SET latitude='".$_POST["latitude"]."', longitude='".$_POST["longitude"]."', alamat='".$_POST["alamat"]."' where id='".$_POST["id"]."'";
@@ -22,12 +22,13 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Water Quality Monitoring</title><link rel="shortcut icon" href="favicon.ico"><link rel="shortcut icon" href="favicon.ico">
+    <title>Water Quality Monitoring</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -41,15 +42,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
+
 </head>
 
 <body>
@@ -86,7 +79,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
 					<?php if($_SESSION["access"]=="Admin"){ ?><li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li> <?php } ?>
                     <li>
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>
@@ -98,7 +91,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                         <a href="permenkes.php"><i class="fa fa-fw fa-edit"></i> Permenkes</a>
                     </li>
                     <li>
-                        <a href="Kelasacuan.php"><i class="fa fa-fw fa-desktop"></i> Kelas Acuan</a>
+                        <a href="kelasacuan.php"><i class="fa fa-fw fa-desktop"></i> Kelas Acuan</a>
                     </li>
                 </ul>
             </div>

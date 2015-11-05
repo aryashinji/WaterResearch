@@ -4,8 +4,8 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 	// run information through authenticator
 	$query="UPDATE Kelas SET latitude='".$_POST["latitude"]."', longitude='".$_POST["longitude"]."', alamat='".$_POST["alamat"]."' where id='".$_POST["id"]."'";
 	$result=mysql_query($query);
-    if($result)header('Location: Kelas.php?edit=ok');
-	else if(!$result)header('Location: Kelas.php?edit=gagal');
+    if($result)header('Location: kelas.php?edit=ok');
+	else if(!$result)header('Location: kelas.php?edit=gagal');
 }
 ?> 
 
@@ -22,12 +22,13 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Water Quality Monitoring</title><link rel="shortcut icon" href="favicon.ico"><link rel="shortcut icon" href="favicon.ico">
+    <title>Water Quality Monitoring</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -41,15 +42,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
+
 </head>
 
 <body>
@@ -85,7 +78,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <?php if($_SESSION["access"]=="Admin"){ ?><li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li> <?php } ?>
                     <li>
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>
@@ -113,7 +106,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:0; padding:0">
-                            Open Kelas
+                            Open Hasil Analisis
                         </h1>
                     </div>
                 </div>
@@ -143,6 +136,8 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 											$besi = $row['besi'];
 											$fluorida = $row['fluorida'];
 											$no2= $row['no2'];
+											
+											$tingkat_air=$row['tingkat_air'];
 					
 						
 					
@@ -159,70 +154,74 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                              </div>
 							 <div class="form-group">
                                 <label>Tanggal Pengamatan</label>
-                                <input class="form-control" value=" <?php echo $nama; ;?>" name="tanggal" readonly="readonly"s>
+                                <input class="form-control" value="<?php echo $nama; ;?>" name="tanggal" readonly="readonly"s>
                             </div>
 							 <div class="form-group">
                                 <label>Status Permenkes</label>
-                                <input class="form-control" value=" <?php echo $isi; ;?>" name="statuspermenkes" readonly="readonly">
+                                <input class="form-control" value="<?php echo $isi; ;?>" name="statuspermenkes" readonly="readonly">
+                            </div>
+							<div class="form-group">
+                                <label>Tingkat Air</label>
+                                <input class="form-control" value="<?php echo $tingkat_air; ;?>" name="tingkat_air" readonly="readonly">
                             </div>
                             <div class="form-group">
                                 <label>Status Kelas</label>
-                                <input class="form-control" value=" <?php echo $statuskelas; ;?>" name="statuskelas" readonly="readonly">
+                                <input class="form-control" value="<?php echo $statuskelas; ;?>" name="statuskelas" readonly="readonly">
                             </div>
 							<div class="form-group">
                                 <label>PH</label>
-                                <input class="form-control" value=" <?php echo $ph; ;?>" name="ph" readonly="readonly">
+                                <input class="form-control" value="<?php echo $ph; ;?>" name="ph" readonly="readonly">
                             </div>
 							<div class="form-group">
                                 <label>Alamat</label>
-                                <input class="form-control" value=" <?php echo $alamat; ;?>" name="alamat" readonly="readonly">
+                                <input class="form-control" value="<?php echo $alamat; ;?>" name="alamat" readonly="readonly">
                             </div>
 							<div class="form-group">
                                 <label>Bau</label>
-                                <input class="form-control" value=" <?php echo $bau; ;?>" name="bau" readonly="readonly">
+                                <input class="form-control" value="<?php echo $bau; ;?>" name="bau" readonly="readonly">
                             </div>
                             <label>Warna</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $warna; ;?>" name="warna" readonly="readonly">
+                                <input class="form-control" value="<?php echo $warna; ;?>" name="warna" readonly="readonly">
                                 <span class="input-group-addon">TCU</span>
                             </div>
 							<div class="form-group">
                                 <label>Rasa</label>
-                                <input class="form-control" value=" <?php echo $rasa; ;?>" name="rasa" readonly="readonly">
+                                <input class="form-control" value="<?php echo $rasa; ;?>" name="rasa" readonly="readonly">
                             </div>
                             <label>Temperatur</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $temperatur; ;?>" name="temperatur" readonly="readonly">
+                                <input class="form-control" value="<?php echo $temperatur; ;?>" name="temperatur" readonly="readonly">
                                 <span class="input-group-addon"><sup>o</sup> Celcius</span>
                             </div>
                             <label>DHL</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $dhl; ;?>" name="dhl" readonly="readonly">
+                                <input class="form-control" value="<?php echo $dhl; ;?>" name="dhl" readonly="readonly">
                                 <span class="input-group-addon">µmhos/cm</span>
                             </div>
                             <label>TDS</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $tds; ;?>" name="tds" readonly="readonly">
+                                <input class="form-control" value="<?php echo $tds; ;?>" name="tds" readonly="readonly">
                                 <span class="input-group-addon">mg/L</span>
                             </div>
                             <label>Kadmium</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $cadmium; ;?>" name="cadmium" readonly="readonly">
+                                <input class="form-control" value="<?php echo $cadmium; ;?>" name="cadmium" readonly="readonly">
                                 <span class="input-group-addon">mg/L</span>
                             </div>
                             <label>Besi</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $besi; ;?>" name="besi" readonly="readonly">
+                                <input class="form-control" value="<?php echo $besi; ;?>" name="besi" readonly="readonly">
                                 <span class="input-group-addon">mg/L</span>
                             </div>
                             <label>Fluorida</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $fluorida; ;?>" name="fluorida" readonly="readonly">
+                                <input class="form-control" value="<?php echo $fluorida; ;?>" name="fluorida" readonly="readonly">
                                 <span class="input-group-addon">mg/L</span>
                             </div>
                             <label>NO2</label>
 							<div class="form-group input-group">
-                                <input class="form-control" value=" <?php echo $no2; ;?>" name="no2" readonly="readonly">
+                                <input class="form-control" value="<?php echo $no2; ;?>" name="no2" readonly="readonly">
                                 <span class="input-group-addon">mg/L</span>
                             </div>
 							

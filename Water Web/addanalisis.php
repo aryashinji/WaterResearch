@@ -35,7 +35,12 @@ if(isset($_POST['idlokasi']) && isset($_POST['ph'] )  ){
 	$_POST["no2"] <= $no2  ) $status_permenkes="Aman untuk diminum";
 	else $status_permenkes="Tidak aman untuk diminum";
 	
-	$query="INSERT INTO analisis_kualitas(id,status_permenkes, status_kelas, temperatur,ph,tds,cadmium,dhl,bau,warna, rasa,besi,no2,fluorida) VALUES ('".$_POST["idlokasi"]."' , '$status_permenkes','','".$_POST["temperatur"]."' , '".$_POST["ph"]."','".$_POST["tds"]."','".$_POST["cadmium"]."', '".$_POST["dhl"]."','".$_POST["bau"]."','".$_POST["warna"]."','".$_POST["rasa"]."', '".$_POST["besi"]."', '".$_POST["no2"]."', '".$_POST["fluorida"]."')";
+	if($_POST["tds"]>=0&&$_POST["tds"]<=1000 && $_POST["dhl"]>=0&&$_POST["dhl"]<=1000)$tingkatair="Aman";
+	else if($_POST["tds"]<=10000&&$_POST["dhl"]<=1500)$tingkatair="Rawan";
+	else if($_POST["tds"]<=100000&&$_POST["dhl"]<=5000)$tingkatair="Kritis";
+	else $tingkatair="Rusak";
+	
+	$query="INSERT INTO analisis_kualitas(id,status_permenkes, status_kelas, temperatur,ph,tds,cadmium,dhl,bau,warna, rasa,besi,no2,fluorida,tingkat_air) VALUES ('".$_POST["idlokasi"]."' , '$status_permenkes','','".$_POST["temperatur"]."' , '".$_POST["ph"]."','".$_POST["tds"]."','".$_POST["cadmium"]."', '".$_POST["dhl"]."','".$_POST["bau"]."','".$_POST["warna"]."','".$_POST["rasa"]."', '".$_POST["besi"]."', '".$_POST["no2"]."', '".$_POST["fluorida"]."', '$tingkatair')";
 	
 	$result1 = mysql_query($query);
 	
@@ -82,12 +87,13 @@ if(isset($_POST['idlokasi']) && isset($_POST['ph'] )  ){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Water Quality Monitoring</title><link rel="shortcut icon" href="favicon.ico"><link rel="shortcut icon" href="favicon.ico">
+    <title>Water Quality Monitoring</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -101,17 +107,8 @@ if(isset($_POST['idlokasi']) && isset($_POST['ph'] )  ){
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
-</head>
 
+</head>
 <body>
 
     <div id="wrapper">
@@ -145,7 +142,7 @@ if(isset($_POST['idlokasi']) && isset($_POST['ph'] )  ){
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <?php if($_SESSION["access"]=="Admin"){ ?><li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li> <?php } ?>
                     <li>
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>

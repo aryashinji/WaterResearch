@@ -14,12 +14,13 @@ require'qs_connection.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Water Quality Monitoring</title><link rel="shortcut icon" href="favicon.ico"><link rel="shortcut icon" href="favicon.ico">
+    <title>Water Quality Monitoring</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -33,15 +34,7 @@ require'qs_connection.php';
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
+
 </head>
 
 <body>
@@ -76,7 +69,7 @@ require'qs_connection.php';
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
 					<?php if($_SESSION["access"]=="Admin"){ ?><li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li> <?php } ?>
                     <li>
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>
@@ -107,7 +100,7 @@ require'qs_connection.php';
                 </div>
                 <!-- /.row -->
 				
-				<?php if(isset($_GET["edit"]) && $_GET["edit"]==ok){ ?>
+				<?php if(isset($_GET["edit"]) && $_GET["edit"]=="ok"){ ?>
 				<div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-success alert-dismissable">
@@ -117,7 +110,7 @@ require'qs_connection.php';
                     </div>
                 </div>
 				<?php } ?>
-				<?php if(isset($_GET["edit"]) && $_GET["edit"]==gagal )  { ?>
+				<?php if(isset($_GET["edit"]) && $_GET["edit"]=="gagal" )  { ?>
 				<div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-danger alert-dismissable">
@@ -139,19 +132,25 @@ require'qs_connection.php';
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th><center>ID analisis</th>
-										<th><center>Tanggal Pengamatan</th>
-                                        <th><center>Status Permenkes</th>
-										<th><center>Status Kelas</th>
-                                        <th><center>ID Lokasi</th>
-                                        
+                                        <th><center>Nama Spot</th>
+										<th><center>Alamat Spot</th>
+                                        <th><center>Tanggal Pengamatan</th>
+										<th><center>Status Permenkes</th>
+										<th><center>Tingkat Air</th>
+                                        <th><center></th>
 										<th><center></th>
+                                        <th><center></th>
                                     </tr>
                                 </thead>
 								<tbody>
 									<?php
 										
-										$result = mysql_query("SELECT * FROM analisis_kualitas ORDER BY id ASC, tanggal_pengamatan DESC");// or die("Invalid query");
+										$result = mysql_query("SELECT * 
+													FROM (
+														SELECT id_analisis, latitude, longitude, nama, alamat, lokasi.id, tanggal_pengamatan, status_permenkes, tingkat_air From analisis_kualitas, lokasi where analisis_kualitas.id=lokasi.id
+														ORDER BY tanggal_pengamatan desc 
+													) AS sub
+													GROUP BY id");// or die("Invalid query");
 										
 										if (!$result) {
 											$message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -161,28 +160,35 @@ require'qs_connection.php';
 										
 										while ($row = mysql_fetch_assoc($result)) {
 											$id = $row['id_analisis'];
-											$nama = $row['tanggal_pengamatan'];
+											$lokasi = $row['id'];
+											$tanggal = $row['tanggal_pengamatan'];
+											$nama = $row['nama'];
 											$isi = $row['status_permenkes'];
-											$statuskelas = $row['status_kelas'];
-											$alamat = $row['id'];
-											$bau = $row['bau'];
-											$warna = $row['warna'];
-											$rasa = $row['rasa'];
-											$temperatur = $row['temperatur'];
+											$tingkat_air=$row['tingkat_air'];
+											$lat=$row['latitude'];
+											$lon=$row['longitude'];
+											//$statuskelas = $row['status_kelas'];
+											$alamat = $row['alamat'];
+											//$bau = $row['bau'];
+											//$warna = $row['warna'];
+											//$rasa = $row['rasa'];
+											//$temperatur = $row['temperatur'];
 											//$tembaga = $row['tembaga'];
-											$dhl = $row['dhl'];
-											$ph = $row['ph'];
-											$tds = $row['tds'];
-											$cadmium = $row['cadmium'];
-											$besi = $row['besi'];
+											//$dhl = $row['dhl'];
+											//$ph = $row['ph'];
+											//$tds = $row['tds'];
+											//$cadmium = $row['cadmium'];
+											//$besi = $row['besi'];
 											//$fluorida = $row['fluorida'];
-											$no2= $row['no2'];
-											echo "<tr><td><center><b>"."$id"."  </td>";
-											echo "<td><center>"."$nama"."</td>";
-											echo "<td><center>"."$isi"."</td>";
-											echo "<td><center>"."$statuskelas"."</td>";
+											//$no2= $row['no2'];
+											echo "<tr><td><center><b>"."$nama"."  </td>";
 											echo "<td><center>"."$alamat"."</td>";
+											echo "<td><center>"."$tanggal"."</td>";
+											echo "<td><center>"."$isi"."</td>";
+											echo "<td><center>"."$tingkat_air"."</td>";
+											echo "<td><center><a href=\"viewmap.php?lat=$lat&lon=$lon\"><button type=\"button\" class=\"btn btn-lg btn-warning\">View Map</button></a></td>";
 											echo "<td><center><a href=\"openanalisis.php?id=$id\"><button type=\"button\" class=\"btn btn-lg btn-success\">Open</button></a></td>";
+											echo "<td><center><a href=\"history.php?id=$lokasi\"><button type=\"button\" class=\"btn btn-lg btn-info\">History</button></a></td></tr>";
 											
 											//echo "<td><center><a href=\"editoranalisis.php?id=$id\"><button type=\"button\" class=\"btn btn-lg btn-info\">Edit</button></a></td>";
 											//echo "<td><center><a href=\"deleteanalisis.php?id=$id\"><button type=\"button\" class=\"btn btn-lg btn-danger\">Delete</button></a></td></tr>";

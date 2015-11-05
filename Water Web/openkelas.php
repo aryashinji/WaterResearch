@@ -5,7 +5,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 	$query="UPDATE Kelas SET latitude='".$_POST["latitude"]."', longitude='".$_POST["longitude"]."', alamat='".$_POST["alamat"]."' where id='".$_POST["id"]."'";
 	$result=mysql_query($query);
     if($result)header('Location: Kelas.php?edit=ok');
-	else if(!$result)header('Location: Kelas.php?edit=gagal');
+	else if(!$result)header('Location: kelasacuan.php?edit=gagal');
 }
 ?> 
 
@@ -22,12 +22,13 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Water Quality Monitoring</title><link rel="shortcut icon" href="favicon.ico"><link rel="shortcut icon" href="favicon.ico">
+    <title>Water Quality Monitoring</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -41,15 +42,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
+
 </head>
 
 <body>
@@ -86,7 +79,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li>
                     <li>
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>
@@ -112,7 +105,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                 <!-- /.row -->
 				<?php
 
-					$resultx = mysql_query("SELECT * FROM Kelas_acuan WHERE id_kelas = '$idr' ");
+					$resultx = mysql_query("SELECT * FROM kelas_acuan WHERE id_kelas = '$idr' ");
 						$row = mysql_fetch_array($resultx);
 												$id = $row['id_kelas'];
 											$nama = $row['temperatur_atas'];
@@ -167,7 +160,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                             </div>
 							
                             
-                            <a href="Kelasacuan.php" class="btn btn-primary" role="button">Back</a><br><br>
+                            <a href="kelasacuan.php" class="btn btn-primary" role="button">Back</a><br><br>
 
                         </form>
 						

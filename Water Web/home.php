@@ -1,5 +1,6 @@
 <?php require ('qs_connection.php'); 
 $idr=isset($_GET["id"]);
+if ($_SESSION['user']=="" && $_SESSION['access']=="")header('Location: index.php');
 if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitude']) ){
 	// run information through authenticator
 	$query="UPDATE lokasi SET latitude='".$_POST["latitude"]."', longitude='".$_POST["longitude"]."', alamat='".$_POST["alamat"]."' where id='".$_POST["id"]."'";
@@ -14,41 +15,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Water Quality Monitoring</title><link rel="shortcut icon" href="favicon.ico"><link rel="shortcut icon" href="favicon.ico">
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
-    <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
-</head>
+<head>    <meta charset="utf-8">    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <meta name="viewport" content="width=device-width, initial-scale=1">    <meta name="description" content="">    <meta name="author" content="">    <title>Water Quality Monitoring</title>    <!-- Bootstrap Core CSS -->    <link href="css/bootstrap.min.css" rel="stylesheet">    <!-- Custom CSS -->    <link href="css/sb-admin-2.css" rel="stylesheet">    <!-- Morris Charts CSS -->    <link href="css/plugins/morris.css" rel="stylesheet">    <!-- Custom Fonts -->    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->    <!--[if lt IE 9]>        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    <![endif]--></head>
 
 <body>
 
@@ -70,7 +37,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
+                      <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" id="search-box" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
@@ -83,12 +50,13 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                             <!-- /input-group -->
                         </li>
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                                <!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
-                            </li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["user"]; ?> <b class="caret"></b></a>
+                    <ul class="nav nav-second-level">
+                            <li class="divider"></li>
+                        <li>
+                            <a href="index.php?out"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+							<!--input type="button" value="Logout" onclick="window.location.href='index.php?out'"-->
+                        </li>
                         </ul>
                     <!-- /.dropdown-user -->
                     </li>
@@ -96,7 +64,7 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                         <a href="home.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
 					<?php if($_SESSION["access"]=="Admin"){ ?><li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li> <?php } ?>
                     <li>
                         <a href="lokasi.php"><i class="fa fa-fw fa-bar-chart-o"></i> Lokasi</a>
@@ -148,9 +116,9 @@ if(isset($_POST['alamat']) || isset($_POST['latitude']) || isset($_POST['longitu
                            function load() {
                              var map = new google.maps.Map(document.getElementById("map"), {
                                //center: new google.maps.LatLng(-6.2382699, 106.97557260000008),
-                               center: new google.maps.LatLng(-6.28248, 107.096),
+                               center: new google.maps.LatLng(-7.3281875, 109.9076899),
                                //zoom: 11,
-                               zoom: 30,
+                               zoom: 8,
                                mapTypeId: 'roadmap'
                              });
                              var infoWindow = new google.maps.InfoWindow;

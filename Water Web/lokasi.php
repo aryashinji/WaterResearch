@@ -5,7 +5,6 @@ require'qs_connection.php';
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -14,12 +13,13 @@ require'qs_connection.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Water Quality Monitoring</title><link rel="shortcut icon" href="favicon.ico"><link rel="shortcut icon" href="favicon.ico">
+    <title>Water Quality Monitoring</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-Admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -33,15 +33,7 @@ require'qs_connection.php';
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script>
-	function myFunction() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	
-	function myFunction2() {
-		document.getElementById("sepmconsole").innerHTML = "https://172.16.2.60:8443";
-	}
-	</script>
+
 </head>
 
 <body>
@@ -77,7 +69,7 @@ require'qs_connection.php';
                     </li>
 					<li>
                         <?php if($_SESSION["access"]=="Admin"){ ?><li>
-                        <a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a>
+                         <?php if($_SESSION["access"]=="Admin"){ ?><a href="user.php"><i class="fa fa-fw fa-wrench"></i> Administrator</a><?php }?>
                     </li> <?php } ?>
                     </li>
                     <li   class="active">
@@ -111,7 +103,7 @@ require'qs_connection.php';
                 </div>
                 <!-- /.row -->
 				
-				<?php if(isset($_GET["edit"]) && $_GET["edit"]==ok) { ?>
+				<?php if(isset($_GET["edit"]) && $_GET["edit"]=="ok") { ?>
 				<div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-success alert-dismissable">
@@ -121,7 +113,7 @@ require'qs_connection.php';
                     </div>
                 </div>
 				<?php } ?>
-				<?php if(isset($_GET["edit"]) && $_GET["edit"]==gagal ) { ?>
+				<?php if(isset($_GET["edit"]) && $_GET["edit"]=="gagal" ) { ?>
 				<div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-danger alert-dismissable">
@@ -148,8 +140,8 @@ require'qs_connection.php';
                                         <th><center>Longitude</th>
                                         <th><center>Alamat</th>
 										<th><center>Status Terbaru</th>
-										<th><center></th>
-										<th><center></th>
+										<?php if($_SESSION["access"]=="Admin"){ ?><th><center></th>
+										<th><center></th><?php } ?>
                                     </tr>
                                 </thead>
 								<tbody>
@@ -174,8 +166,9 @@ require'qs_connection.php';
 											echo "<td><center>"."$isi"."</td>";
 											echo "<td><center>"."$alamat"."</td>";
 											echo "<td><center>"."$status"."</td>";
-											echo "<td><center><a href=\"editorlokasi.php?id=$id\"><button type=\"button\" class=\"btn btn-lg btn-info\">Edit</button></a></td>";
-											echo "<td><center><a href=\"deletelokasi.php?id=$id\"><button type=\"button\" class=\"btn btn-lg btn-danger\">Delete</button></a></td></tr>";
+											if($_SESSION["access"]=="Admin"){echo "<td><center><a href=\"editorlokasi.php?id=$id\"><button type=\"button\" class=\"btn btn-lg btn-info\">Edit</button></a></td>";
+											echo "<td><center><a href=\"deletelokasi.php?id=$id\"><button type=\"button\" class=\"btn btn-lg btn-danger\">Delete</button></a></td>"; }
+											echo "</tr>";
 											
 											
 										}
